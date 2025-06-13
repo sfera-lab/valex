@@ -4,10 +4,15 @@ defmodule Valex.MixProject do
   def project do
     [
       app: :valex,
-      version: "0.1.0",
+      version: "0.0.1",
       elixir: "~> 1.18",
+      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: description(),
+      package: package(),
+      deps: deps(),
+      name: "Valex",
+      source_url: "https://github.com/sfera-lab/valex"
     ]
   end
 
@@ -22,8 +27,20 @@ defmodule Valex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:ex_doc, "~> 0.14", only: :dev, runtime: false}
+    ]
+  end
+
+  defp description do
+    "Valex is a library for validation in Elixir."
+  end
+
+  defp package do
+    [
+      name: "valex",
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/sfera-lab/valex"}
     ]
   end
 end
